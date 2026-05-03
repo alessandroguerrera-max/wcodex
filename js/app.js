@@ -1338,11 +1338,11 @@ function renderLetterboxdDiary(films) {
         const stars = '★'.repeat(Math.floor(film.rating)) + (film.rating % 1 >= 0.5 ? '½' : '');
         diaryHtml += `<div class="diary-entry">
             <div class="diary-info">
-                <span class="diary-title">${film.title} <span class="film-year">${film.year}</span></span>
+                <a class="diary-title film-title-link" href="${film.link}" target="_blank" rel="noopener" title="Open on Letterboxd">${film.title} <span class="film-year">${film.year}</span></a>
                 <span class="diary-date">${film.date}</span>
             </div>
             <span class="diary-stars">${stars || '—'}</span>
-            <a href="${film.link}" target="_blank" class="diary-link">↗</a>
+            <a href="${film.link}" target="_blank" rel="noopener" class="diary-link">↗</a>
         </div>`;
     });
 
@@ -1635,7 +1635,7 @@ function renderWatchLog() {
     container.innerHTML = entries.slice(0, 20).map(([title, data]) =>
         `<div class="log-film">
             <div class="log-film-info">
-                <strong>${title}</strong>
+                <a class="film-title-link" href="${letterboxdUrl(title)}" target="_blank" rel="noopener" title="Open on Letterboxd"><strong>${title}</strong></a>
                 <span class="log-film-date">${data.date || ''}</span>
             </div>
             <div class="log-film-rating">
