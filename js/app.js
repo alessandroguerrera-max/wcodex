@@ -1199,19 +1199,25 @@ function loadBenchmark(index) {
 
 function initCinema() {
     renderItalianFilmOfWeek();
-    renderStreamingAccounts();
     switchWatchlist('must_watch', document.querySelector('.watchlist-tab.active'));
     renderWatchLog();
     renderRoles();
 
-    // Load letterboxd username — default to sandro33
+    // Letterboxd diary sync — default to sandro33
     const lbUser = localStorage.getItem('warrior_letterboxd') || 'sandro33';
     localStorage.setItem('warrior_letterboxd', lbUser);
-    const lbInput = document.getElementById('letterboxd-username');
-    if (lbInput) lbInput.value = lbUser;
-
-    // Fetch Letterboxd data
     fetchLetterboxd(lbUser);
+}
+
+// Build a Letterboxd URL — uses the slug if available, otherwise falls back
+// to a title search (Letterboxd auto-redirects to the canonical film page
+// when there's an exact match).
+function letterboxdUrl(film) {
+    if (film && film.letterboxd) {
+        return `https://letterboxd.com/film/${film.letterboxd}/`;
+    }
+    const t = (film && film.title) || (typeof film === 'string' ? film : '');
+    return `https://letterboxd.com/search/films/${encodeURIComponent(t)}/`;
 }
 
 // === LETTERBOXD RSS INTEGRATION ===
@@ -1351,52 +1357,13 @@ function renderItalianFilmOfWeek() {
             </div>
             <p class="film-desc">${film.desc}</p>
             <div class="film-actions">
-                ${renderStreamingSearch(film.title)}
-                <a href="https://letterboxd.com/film/${film.letterboxd || ''}" target="_blank" class="btn-streaming" style="background:#00E054;color:#000">Letterboxd</a>
+                <button class="btn-jw" onclick="openJustWatch(event, '${film.title.replace(/'/g, "\\'")}', ${film.year || 'null'})" title="Where to watch" aria-label="Where to watch">
+                    <span class="btn-jw-icon">▶</span><span class="btn-jw-label">Watch</span>
+                </button>
+                <a href="${letterboxdUrl(film)}" target="_blank" rel="noopener" class="btn-streaming" style="background:#00E054;color:#000">Letterboxd</a>
             </div>
         </div>
     `;
-}
-
-function renderStreamingAccounts() {
-    const container = document.getElementById('streaming-accounts');
-    const userAccounts = JSON.parse(localStorage.getItem('warrior_streaming') || '[]');
-    container.innerHTML = STREAMING_PLATFORMS.map(p => {
-        const hasAccount = userAccounts.includes(p.name);
-        return `<div class="streaming-account ${hasAccount ? 'active' : ''}" onclick="toggleStreamingAccount('${p.name}')" style="border-color:${hasAccount ? p.color : 'var(--border)'}">
-            <span class="streaming-icon" style="background:${p.color}">${p.icon}</span>
-            <span>${p.name}</span>
-            <span class="streaming-check">${hasAccount ? '✓' : '+'}</span>
-        </div>`;
-    }).join('');
-}
-
-function toggleStreamingAccount(name) {
-    const accounts = JSON.parse(localStorage.getItem('warrior_streaming') || '[]');
-    const idx = accounts.indexOf(name);
-    if (idx >= 0) accounts.splice(idx, 1);
-    else accounts.push(name);
-    localStorage.setItem('warrior_streaming', JSON.stringify(accounts));
-    renderStreamingAccounts();
-}
-
-function renderStreamingSearch(filmTitle) {
-    const accounts = JSON.parse(localStorage.getItem('warrior_streaming') || '[]');
-    return STREAMING_PLATFORMS
-        .filter(p => accounts.includes(p.name))
-        .map(p => `<a href="${p.url}${encodeURIComponent(filmTitle)}" target="_blank" class="btn-streaming" style="background:${p.color}">${p.icon}</a>`)
-        .join('');
-}
-
-function saveLetterboxd(username) {
-    localStorage.setItem('warrior_letterboxd', username);
-}
-
-function openLetterboxd(e) {
-    e.preventDefault();
-    const user = localStorage.getItem('warrior_letterboxd');
-    if (user) window.open(`https://letterboxd.com/${user}/`, '_blank');
-    else alert('Enter your Letterboxd username first.');
 }
 
 // === WATCHLISTS ===
@@ -1428,12 +1395,11 @@ function switchWatchlist(listType, btn) {
                 const safe = title.replace(/'/g, "\\'");
                 html += `<div class="film-row ${w ? 'watched' : ''}">
                     <span class="film-check" onclick="markFilmWatched('${safe}')">${w ? '✓' : '○'}</span>
-                    <span class="film-title">${title}</span>
+                    <a class="film-title film-title-link" href="${letterboxdUrl(title)}" target="_blank" rel="noopener" title="Read on Letterboxd">${title}</a>
                     <div class="film-row-actions">
                         <button class="btn-jw" onclick="openJustWatch(event, '${safe}', null)" title="Where to watch" aria-label="Where to watch">
                             <span class="btn-jw-icon">▶</span><span class="btn-jw-label">Watch</span>
                         </button>
-                        ${renderStreamingSearch(title)}
                     </div>
                 </div>`;
             });
@@ -1459,7 +1425,7 @@ function renderFilmRow(film, watched, listType) {
     return `<div class="film-row ${w ? 'watched' : ''}">
         <span class="film-check" onclick="markFilmWatched('${safeTitle}')">${w ? '✓' : '○'}</span>
         <div class="film-info">
-            <span class="film-title">${film.title} <span class="film-year">(${film.year})</span></span>
+            <a class="film-title film-title-link" href="${letterboxdUrl(film)}" target="_blank" rel="noopener" title="Read on Letterboxd">${film.title} <span class="film-year">(${film.year})</span></a>
             <span class="film-director-small">${film.director} ${countryTag}</span>
             ${whyText ? `<span class="film-why">${whyText}</span>` : ''}
         </div>
@@ -1467,7 +1433,6 @@ function renderFilmRow(film, watched, listType) {
             <button class="btn-jw" onclick="openJustWatch(event, '${safeTitle}', ${yr || 'null'})" title="Where to watch" aria-label="Where to watch">
                 <span class="btn-jw-icon">▶</span><span class="btn-jw-label">Watch</span>
             </button>
-            ${renderStreamingSearch(film.title)}
             ${film.source === 'user' ? `<button class="btn-text" onclick="removeUserFilm('${listType}','${safeTitle}')">×</button>` : ''}
         </div>
     </div>`;
@@ -1725,14 +1690,20 @@ function renderRoles() {
             </div>
             <div class="role-films">
                 <h4>Study Films for This Role</h4>
-                ${role.films.map((f, fi) =>
-                    `<div class="film-row ${watched[f.title] ? 'watched' : ''}">
-                        <span class="film-check" onclick="markFilmWatched('${f.title.replace(/'/g, "\\'")}')">${watched[f.title] ? '✓' : '○'}</span>
-                        <span class="film-title">${f.title}</span>
+                ${role.films.map((f, fi) => {
+                    const safe = f.title.replace(/'/g, "\\'");
+                    return `<div class="film-row ${watched[f.title] ? 'watched' : ''}">
+                        <span class="film-check" onclick="markFilmWatched('${safe}')">${watched[f.title] ? '✓' : '○'}</span>
+                        <a class="film-title film-title-link" href="${letterboxdUrl(f)}" target="_blank" rel="noopener" title="Read on Letterboxd">${f.title}</a>
                         <span class="film-why">${f.why || ''}</span>
-                        <div class="film-row-actions">${renderStreamingSearch(f.title)}<button class="btn-text" onclick="removeRoleFilm(${ri},${fi})">×</button></div>
-                    </div>`
-                ).join('')}
+                        <div class="film-row-actions">
+                            <button class="btn-jw" onclick="openJustWatch(event, '${safe}', ${f.year || 'null'})" title="Where to watch" aria-label="Where to watch">
+                                <span class="btn-jw-icon">▶</span><span class="btn-jw-label">Watch</span>
+                            </button>
+                            <button class="btn-text" onclick="removeRoleFilm(${ri},${fi})">×</button>
+                        </div>
+                    </div>`;
+                }).join('')}
                 <div class="add-role-film">
                     <input type="text" id="role-film-${ri}" placeholder="Add a film to study..." class="input-field">
                     <input type="text" id="role-film-why-${ri}" placeholder="Why this film helps" class="input-field">

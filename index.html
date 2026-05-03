@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0B0E14">
@@ -197,12 +198,7 @@
             <div class="page-subtitle">Study the craft</div>
             <section class="content-block"><div class="block-head"><span class="block-num">01</span><h2>Film of the Week</h2></div><div id="italian-film-of-week"></div></section>
             <section class="content-block">
-                <div class="block-head"><span class="block-num">02</span><h2>Accounts</h2></div>
-                <div class="streaming-grid" id="streaming-accounts"></div>
-                <div style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="text" id="letterboxd-username" placeholder="Letterboxd username" class="input" style="max-width:200px" onchange="saveLetterboxd(this.value)"><a href="#" class="btn--outline" onclick="openLetterboxd(event)">Profile</a></div>
-            </section>
-            <section class="content-block">
-                <div class="block-head"><span class="block-num">03</span><h2>What's On</h2></div>
+                <div class="block-head"><span class="block-num">02</span><h2>What's On</h2></div>
                 <div class="news-grid">
                     <a href="https://www.screendaily.com" target="_blank" class="news-card"><span class="news-src">Screen Daily</span></a>
                     <a href="https://www.indiewire.com" target="_blank" class="news-card"><span class="news-src">IndieWire</span></a>
@@ -214,17 +210,17 @@
                 <div style="margin-top:12px"><span class="note" style="margin:0">Cinemas:</span> <a href="https://www.palacecinemas.com.au" target="_blank" class="link-btn">Palace</a> <a href="https://www.dendy.com.au" target="_blank" class="link-btn">Dendy</a> <a href="https://www.eventcinemas.com.au" target="_blank" class="link-btn">Event</a></div>
             </section>
             <section class="content-block">
-                <div class="block-head"><span class="block-num">04</span><h2>Watchlists</h2></div>
+                <div class="block-head"><span class="block-num">03</span><h2>Watchlists</h2></div>
                 <div class="watchlist-tabs"><button class="wl-tab active" data-list="must_watch" onclick="switchWatchlist('must_watch',this)">Must Watch</button><button class="wl-tab" data-list="world" onclick="switchWatchlist('world',this)">World</button><button class="wl-tab" data-list="directors" onclick="switchWatchlist('directors',this)">Directors</button><button class="wl-tab" data-list="italian" onclick="switchWatchlist('italian',this)">Italian</button><button class="wl-tab" data-list="custom" onclick="switchWatchlist('custom',this)">Mine</button></div>
                 <div id="watchlist-content"></div>
             </section>
             <section class="content-block">
-                <div class="block-head"><span class="block-num">05</span><h2>Add Film</h2></div>
+                <div class="block-head"><span class="block-num">04</span><h2>Add Film</h2></div>
                 <div class="form-row"><input type="text" id="film-title" placeholder="Title" class="input"><input type="text" id="film-director" placeholder="Director" class="input"><input type="text" id="film-year" placeholder="Year" class="input input--sm"><select id="film-list" class="input"><option value="must_watch">Must Watch</option><option value="world">World</option><option value="directors">Directors</option><option value="italian">Italian</option><option value="custom">Mine</option></select><button class="btn" onclick="addFilm()">Add</button></div>
             </section>
-            <section class="content-block"><div class="block-head"><span class="block-num">06</span><h2>Log</h2></div><div id="watch-log"></div></section>
+            <section class="content-block"><div class="block-head"><span class="block-num">05</span><h2>Log</h2></div><div id="watch-log"></div></section>
             <section class="content-block">
-                <div class="block-head"><span class="block-num">07</span><h2>Roles</h2></div>
+                <div class="block-head"><span class="block-num">06</span><h2>Roles</h2></div>
                 <p class="note">Character study lists</p>
                 <div class="form-row"><input type="text" id="role-name" placeholder="Role" class="input"><input type="text" id="role-project" placeholder="Project" class="input"><input type="text" id="role-notes" placeholder="Description" class="input"><button class="btn" onclick="addRole()">Add</button></div>
                 <div id="roles-list"></div>
