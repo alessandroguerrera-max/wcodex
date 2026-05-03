@@ -1198,6 +1198,7 @@ function loadBenchmark(index) {
 // === CINEMA TAB ===
 
 function initCinema() {
+    renderFilmOfTheDay();
     renderItalianFilmOfWeek();
     switchWatchlist('must_watch', document.querySelector('.watchlist-tab.active'));
     renderWatchLog();
@@ -1207,6 +1208,121 @@ function initCinema() {
     const lbUser = localStorage.getItem('warrior_letterboxd') || 'sandro33';
     localStorage.setItem('warrior_letterboxd', lbUser);
     fetchLetterboxd(lbUser);
+}
+
+// === FILM OF THE DAY ===
+// Daily recommendation. Pulls from all curated film pools, filters out anything
+// already watched (locally or in the Letterboxd diary), then scores remaining
+// films by taste affinity (decade match + country match against Letterboxd 4★+
+// films). Daily pick is deterministic per date — same day always shows the
+// same film, refreshes don't change it.
+
+function renderFilmOfTheDay() {
+    const container = document.getElementById('film-of-the-day');
+    if (!container) return;
+
+    const watched = JSON.parse(localStorage.getItem('warrior_watched') || '{}');
+    const lbFilms = JSON.parse(localStorage.getItem('warrior_letterboxd_films') || '[]');
+    const lbWatched = new Set(lbFilms.map(f => (f.title || '').toLowerCase()));
+
+    // Combine all curated pools + user-added entries
+    const userMustWatch = JSON.parse(localStorage.getItem('warrior_list_must_watch') || '[]');
+    const userWorld = JSON.parse(localStorage.getItem('warrior_list_world') || '[]');
+    const userItalian = JSON.parse(localStorage.getItem('warrior_list_italian') || '[]');
+    const userCustom = JSON.parse(localStorage.getItem('warrior_list_custom') || '[]');
+    const directorFilms = Object.values(DIRECTOR_STUDIES || {})
+        .flatMap(d => (d.essential || []).map(t => ({ title: t })));
+
+    const pool = [
+        ...MUST_WATCH, ...WORLD_CINEMA, ...ITALIAN_FILMS,
+        ...userMustWatch, ...userWorld, ...userItalian, ...userCustom,
+        ...directorFilms
+    ];
+
+    // Dedupe by title and exclude anything already seen
+    const seen = new Set();
+    const unseen = [];
+    for (const f of pool) {
+        const key = (f.title || '').toLowerCase();
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        if (watched[f.title]) continue;
+        if (lbWatched.has(key)) continue;
+        unseen.push(f);
+    }
+
+    if (unseen.length === 0) {
+        container.innerHTML = `<div class="film-of-week"><p class="film-desc">You've seen everything in your watchlists. Add more films and the daily pick will resume.</p></div>`;
+        return;
+    }
+
+    // Taste signals from Letterboxd 4★+ films
+    const highRated = lbFilms.filter(f => (f.rating || 0) >= 4);
+    const likedDecades = new Set();
+    for (const f of highRated) {
+        const yr = parseInt(f.year);
+        if (yr) likedDecades.add(Math.floor(yr / 10) * 10);
+    }
+
+    // Score each candidate
+    const scoreFilm = (film) => {
+        let s = 0;
+        if (film.year) {
+            const decade = Math.floor(film.year / 10) * 10;
+            if (likedDecades.has(decade)) s += 5;
+        }
+        if (film.country) s += 1; // World Cinema slight boost
+        if (film.why || film.desc) s += 1; // entries with rationale tend to be hand-picked
+        return s;
+    };
+    const scored = unseen.map(f => ({ f, s: scoreFilm(f) })).sort((a, b) => b.s - a.s);
+
+    // Top 50% (or top 12, whichever is larger) of scored pool — keeps quality up
+    const topPool = scored.slice(0, Math.max(12, Math.ceil(scored.length / 2)));
+
+    // Deterministic daily pick — same date → same film
+    const today = new Date().toISOString().split('T')[0];
+    let seed = 0;
+    for (let i = 0; i < today.length; i++) seed = ((seed * 31) + today.charCodeAt(i)) >>> 0;
+    const pick = topPool[seed % topPool.length].f;
+
+    // Build the "why today" reasoning
+    const reasons = [];
+    if (pick.year) {
+        const decade = Math.floor(pick.year / 10) * 10;
+        if (likedDecades.has(decade)) reasons.push(`from the ${decade}s — a decade you rate highly`);
+    }
+    if (pick.country) reasons.push(pick.country + ' cinema');
+    if (highRated.length === 0) reasons.push('hand-picked while we learn your taste');
+    const why = reasons.length ? `Why today: ${reasons.join(' · ')}` : '';
+
+    const isWatched = watched[pick.title];
+    const safeTitle = (pick.title || '').replace(/'/g, "\\'");
+    const yr = pick.year || 'null';
+    const desc = pick.desc || pick.why || '';
+    const director = pick.director ? `Directed by ${pick.director}` : '';
+
+    container.innerHTML = `
+        <div class="film-of-week ${isWatched ? 'watched' : ''}">
+            <div class="film-week-header">
+                <div>
+                    <h3><a class="film-title-link" href="${letterboxdUrl(pick)}" target="_blank" rel="noopener">${pick.title} ${pick.year ? `<span class="film-year">(${pick.year})</span>` : ''}</a></h3>
+                    ${director ? `<div class="film-director">${director}</div>` : ''}
+                </div>
+                <button class="btn-watch ${isWatched ? 'done' : ''}" onclick="markFilmWatched('${safeTitle}')">
+                    ${isWatched ? '✓ Watched' : 'Mark as Watched'}
+                </button>
+            </div>
+            ${desc ? `<p class="film-desc">${desc}</p>` : ''}
+            ${why ? `<p class="film-why-today">${why}</p>` : ''}
+            <div class="film-actions">
+                <button class="btn-jw" onclick="openJustWatch(event, '${safeTitle}', ${yr})" title="Where to watch" aria-label="Where to watch">
+                    <span class="btn-jw-icon">▶</span><span class="btn-jw-label">Watch</span>
+                </button>
+                <a href="${letterboxdUrl(pick)}" target="_blank" rel="noopener" class="btn-streaming" style="background:#00E054;color:#000">Letterboxd</a>
+            </div>
+        </div>
+    `;
 }
 
 // Build a Letterboxd URL — always returns a /film/{slug}/ URL so iOS
@@ -1296,6 +1412,7 @@ async function fetchLetterboxd(username) {
             localStorage.setItem('warrior_letterboxd_films', JSON.stringify(letterboxdFilms));
             mergeLetterboxdWithWatched(letterboxdFilms);
             renderLetterboxdDiary(letterboxdFilms);
+            renderFilmOfTheDay();   // re-pick now that taste data is loaded
         }
     } catch (err) {
         console.log('Letterboxd fetch failed (expected on local file):', err.message);
@@ -1461,6 +1578,7 @@ function markFilmWatched(title) {
     // Re-render current list
     const activeTab = document.querySelector('.watchlist-tab.active');
     if (activeTab) switchWatchlist(activeTab.dataset.list, activeTab);
+    renderFilmOfTheDay();
     renderItalianFilmOfWeek();
     renderWatchLog();
 }

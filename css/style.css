@@ -549,6 +549,7 @@ select.input,select.input-field{
 .film-row.watched .film-check{color:var(--green)}
 .film-info{flex:1;min-width:0}
 .film-title{font-size:14px;font-weight:400}
+.film-why-today{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--sky);font-size:13px;margin:8px 0 12px;letter-spacing:.2px}
 .film-title-link{color:var(--marble);text-decoration:none;transition:color .2s var(--ease);display:inline-block}
 .film-title-link:hover{color:var(--sky);text-decoration:underline;text-decoration-color:rgba(74,158,219,.4);text-underline-offset:3px}
 .film-row.watched .film-title-link{color:var(--marble-dim)}
