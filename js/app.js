@@ -1504,9 +1504,10 @@ function switchWatchlist(listType, btn) {
     const watched = JSON.parse(localStorage.getItem('warrior_watched') || '{}');
 
     if (listType === 'must_watch') {
+        const baseList = (typeof MUST_WATCH_1001 !== 'undefined' && MUST_WATCH_1001.length) ? MUST_WATCH_1001 : MUST_WATCH;
         const userAdded = JSON.parse(localStorage.getItem('warrior_list_must_watch') || '[]');
-        const allFilms = [...MUST_WATCH.map(f => ({...f, source: 'built-in'})), ...userAdded.map(f => ({...f, source: 'user'}))];
-        container.innerHTML = allFilms.map(f => renderFilmRow(f, watched, 'must_watch')).join('');
+        const allFilms = [...baseList.map(f => ({...f, source: 'built-in'})), ...userAdded.map(f => ({...f, source: 'user'}))];
+        renderPagedList(container, allFilms, watched, 'must_watch');
     } else if (listType === 'world') {
         const userAdded = JSON.parse(localStorage.getItem('warrior_list_world') || '[]');
         const allFilms = [...WORLD_CINEMA.map(f => ({...f, source: 'built-in'})), ...userAdded.map(f => ({...f, source: 'user'}))];
@@ -1536,13 +1537,92 @@ function switchWatchlist(listType, btn) {
         });
         container.innerHTML = html;
     } else if (listType === 'custom') {
+        // Mine = user-added films (top, marked source 'user' so X delete shows)
+        // PLUS the canonical 1001 list (so user has the full library to track)
         const userFilms = JSON.parse(localStorage.getItem('warrior_list_custom') || '[]');
-        if (userFilms.length === 0) {
-            container.innerHTML = '<p style="color:var(--text-muted);padding:20px;text-align:center">No custom films added yet. Use the form below to add films.</p>';
-        } else {
-            container.innerHTML = userFilms.map(f => renderFilmRow(f, watched, 'custom')).join('');
+        const baseList = (typeof MUST_WATCH_1001 !== 'undefined' && MUST_WATCH_1001.length) ? MUST_WATCH_1001 : [];
+        // Dedupe: skip canonical entries that the user already has by title
+        const userTitles = new Set(userFilms.map(f => (f.title || '').toLowerCase()));
+        const canonicalUnique = baseList.filter(f => !userTitles.has((f.title || '').toLowerCase()));
+        const allFilms = [
+            ...userFilms.map(f => ({...f, source: 'user'})),
+            ...canonicalUnique.map(f => ({...f, source: 'built-in'}))
+        ];
+        renderPagedList(container, allFilms, watched, 'custom');
+    }
+}
+
+// === LIST RENDERING WITH "SHOW MORE" ===
+// First 10 films visible. Click "Show 10 More" to grow the visible count
+// by 10. Visible count persists per tab in localStorage.
+
+const LIST_BATCH_SIZE = 10;
+
+function getListVisible(listType) {
+    return parseInt(localStorage.getItem(`warrior_${listType}_visible`) || String(LIST_BATCH_SIZE), 10) || LIST_BATCH_SIZE;
+}
+function setListVisible(listType, n) {
+    localStorage.setItem(`warrior_${listType}_visible`, String(n));
+}
+function getListSearch(listType) {
+    return localStorage.getItem(`warrior_${listType}_search`) || '';
+}
+function setListSearch(listType, q) {
+    localStorage.setItem(`warrior_${listType}_search`, q || '');
+}
+
+function onListSearch(listType, value) {
+    setListSearch(listType, value);
+    setListVisible(listType, LIST_BATCH_SIZE);  // reset to first 10 on new search
+    const tab = document.querySelector('.watchlist-tab.active');
+    if (tab && tab.dataset.list === listType) switchWatchlist(listType, tab);
+}
+
+function showMoreFilms(listType) {
+    const current = getListVisible(listType);
+    setListVisible(listType, current + LIST_BATCH_SIZE);
+    const tab = document.querySelector('.watchlist-tab.active');
+    if (tab && tab.dataset.list === listType) switchWatchlist(listType, tab);
+}
+
+function showAllFilms(listType, total) {
+    setListVisible(listType, total);
+    const tab = document.querySelector('.watchlist-tab.active');
+    if (tab && tab.dataset.list === listType) switchWatchlist(listType, tab);
+}
+
+function renderPagedList(container, allFilms, watched, listType) {
+    const search = getListSearch(listType).toLowerCase();
+    const filtered = search
+        ? allFilms.filter(f => (f.title || '').toLowerCase().includes(search) || (f.director || '').toLowerCase().includes(search))
+        : allFilms;
+
+    const total = filtered.length;
+    let visible = getListVisible(listType);
+    if (visible > total) visible = total;
+    if (visible < LIST_BATCH_SIZE) visible = LIST_BATCH_SIZE;
+    const slice = filtered.slice(0, visible);
+    const remaining = total - visible;
+
+    let html = `<div class="mw-toolbar">
+        <input type="search" class="mw-search input" placeholder="Search ${total} films..." value="${search.replace(/"/g, '&quot;')}" oninput="onListSearch('${listType}', this.value)">
+        <span class="mw-count">${Math.min(visible, total)} of ${total}</span>
+    </div>`;
+
+    if (total === 0) {
+        html += `<p style="color:var(--marble-muted);padding:20px;text-align:center">No films match your search.</p>`;
+    } else {
+        html += slice.map(f => renderFilmRow(f, watched, listType)).join('');
+        if (remaining > 0) {
+            const next = Math.min(LIST_BATCH_SIZE, remaining);
+            html += `<div class="mw-more-row">
+                <button class="mw-more-btn" onclick="showMoreFilms('${listType}')">Show ${next} more <span class="mw-more-count">(${remaining} remaining)</span></button>
+                ${remaining > LIST_BATCH_SIZE ? `<button class="mw-more-btn mw-more-all" onclick="showAllFilms('${listType}', ${total})">Show all ${total}</button>` : ''}
+            </div>`;
         }
     }
+
+    container.innerHTML = html;
 }
 
 function renderFilmRow(film, watched, listType) {
@@ -1551,11 +1631,19 @@ function renderFilmRow(film, watched, listType) {
     const whyText = film.why || film.desc || '';
     const safeTitle = film.title.replace(/'/g, "\\'");
     const yr = film.year || '';
+    const rating = w && w.rating ? w.rating : 0;
+    const ratingHtml = rating
+        ? `<span class="film-row-rating">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span>`
+        : '';
+    const directorLine = (film.director || countryTag)
+        ? `<span class="film-director-small">${film.director || ''}${film.director && countryTag ? ' ' : ''}${countryTag}</span>`
+        : '';
     return `<div class="film-row ${w ? 'watched' : ''}">
         <span class="film-check" onclick="markFilmWatched('${safeTitle}')">${w ? '✓' : '○'}</span>
         <div class="film-info">
-            <a class="film-title film-title-link" href="${letterboxdUrl(film)}" target="_blank" rel="noopener" title="Read on Letterboxd">${film.title} <span class="film-year">(${film.year})</span></a>
-            <span class="film-director-small">${film.director} ${countryTag}</span>
+            <a class="film-title film-title-link" href="${letterboxdUrl(film)}" target="_blank" rel="noopener" title="Read on Letterboxd">${film.title}${film.year ? ` <span class="film-year">(${film.year})</span>` : ''}</a>
+            ${directorLine}
+            ${ratingHtml}
             ${whyText ? `<span class="film-why">${whyText}</span>` : ''}
         </div>
         <div class="film-row-actions">
