@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0B0E14">
+    <title>The Warrior's Codex</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- FIXED HEADER — AG + page title + menu -->
+    <header class="header">
+        <div class="header-left">
+            <a href="#" class="header-logo" onclick="navigateTo('home');return false;">AG</a>
+            <span class="header-dash">—</span>
+            <span class="header-page-title" id="header-page-title">The Warrior's Codex</span>
+        </div>
+        <button class="menu-trigger" id="menu-trigger" aria-label="Menu">
+            <span></span><span></span>
+        </button>
+    </header>
+
+    <!-- FULL-SCREEN NAV OVERLAY -->
+    <nav class="overlay-nav" id="overlay-nav">
+        <div class="nav-inner">
+            <div class="nav-list">
+                <a href="#" class="nav-item" data-tab="training" data-num="01" data-title="Training — Prepare for Battle">Training</a>
+                <a href="#" class="nav-item" data-tab="nutrition" data-num="02" data-title="Nutrition — The Warrior's Table">Nutrition</a>
+                <a href="#" class="nav-item" data-tab="supplements" data-num="03" data-title="Supplements — The Armoury Within">Supplements</a>
+                <a href="#" class="nav-item" data-tab="recovery" data-num="04" data-title="Recovery — Rest Like a Warrior">Recovery</a>
+                <a href="#" class="nav-item" data-tab="cinema" data-num="05" data-title="Cinema">Cinema</a>
+                <a href="#" class="nav-item" data-tab="language" data-num="06" data-title="Italiano — Impara l'Italiano">Italiano</a>
+                <a href="#" class="nav-item" data-tab="socials" data-num="07" data-title="Socials">Socials</a>
+                <a href="#" class="nav-item" data-tab="finance" data-num="08" data-title="Finance">Finance</a>
+                <a href="#" class="nav-item" data-tab="progress" data-num="09" data-title="Progress — The Path Forward">Progress</a>
+            </div>
+            <div class="nav-footer">
+                <p class="nav-quote">"No man has the right to be an amateur in the matter of physical training."</p>
+                <p class="nav-attribution">— Socrates</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====================== HOME ====================== -->
+    <main id="tab-home" class="page active" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Jacques-Louis_David_-_The_Death_of_Socrates_-_Google_Art_Project.jpg/1280px-Jacques-Louis_David_-_The_Death_of_Socrates_-_Google_Art_Project.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="home-hero">
+                <h1 class="home-title">The Warrior's<br>Codex</h1>
+                <p class="home-sub">Built for Alessandro Guerrera</p>
+            </div>
+
+            <section class="home-ethos">
+                <p>This is not an app. This is a system for building a warrior.</p>
+                <p>The Roman legionary did not train in a gym. He marched, climbed, swam, carried, and fought. His body was forged by purposeful movement. His mind was sharpened by discipline, art, and the study of those who came before him.</p>
+                <p>This codex is your daily operating system. It governs how you train, what you eat, what you watch, what you learn, and how you recover. Every element is designed to build you — physically, creatively, and culturally — into the person the world needs to see.</p>
+            </section>
+
+            <section class="home-pillars">
+                <div class="pillar" onclick="navigateTo('training')"><span class="pillar-num">01</span><h3>Training</h3><p>Kettlebells, bodyweight, movement. The warrior's way.</p></div>
+                <div class="pillar" onclick="navigateTo('nutrition')"><span class="pillar-num">02</span><h3>Nutrition</h3><p>Italian regional cuisine. Fuel with heritage.</p></div>
+                <div class="pillar" onclick="navigateTo('supplements')"><span class="pillar-num">03</span><h3>Supplements</h3><p>Evidence-based only. Food first.</p></div>
+                <div class="pillar" onclick="navigateTo('recovery')"><span class="pillar-num">04</span><h3>Recovery</h3><p>Cold water, art, history, breath.</p></div>
+                <div class="pillar" onclick="navigateTo('cinema')"><span class="pillar-num">05</span><h3>Cinema</h3><p>Study the craft. Watch with purpose.</p></div>
+                <div class="pillar" onclick="navigateTo('language')"><span class="pillar-num">06</span><h3>Italiano</h3><p>The language of your ancestors.</p></div>
+                <div class="pillar" onclick="navigateTo('socials')"><span class="pillar-num">07</span><h3>Socials</h3><p>Content plan, brands, inspiration.</p></div>
+                <div class="pillar" onclick="navigateTo('finance')"><span class="pillar-num">08</span><h3>Finance</h3><p>Income, expenses, deals.</p></div>
+                <div class="pillar" onclick="navigateTo('progress')"><span class="pillar-num">09</span><h3>Progress</h3><p>Track. Measure. Improve.</p></div>
+            </section>
+
+            <!-- Weekly Summary -->
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">—</span><h2>This Week</h2></div>
+                <div id="weekly-summary"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====================== TRAINING ====================== -->
+    <main id="tab-training" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Jacques-Louis_David_-_The_Death_of_Socrates_-_Google_Art_Project.jpg/1280px-Jacques-Louis_David_-_The_Death_of_Socrates_-_Google_Art_Project.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Week <span id="current-week">1</span> — <span id="current-phase">The Foundation</span></div>
+            <section class="day-selector">
+                <button class="day-btn active" data-day="monday"><span class="day-label">Mon</span><span class="day-name">Forge</span></button>
+                <button class="day-btn" data-day="tuesday"><span class="day-label">Tue</span><span class="day-name">Gymnast</span></button>
+                <button class="day-btn" data-day="wednesday"><span class="day-label">Wed</span><span class="day-name">Arena</span></button>
+                <button class="day-btn" data-day="thursday"><span class="day-label">Thu</span><span class="day-name">Sculptor</span></button>
+                <button class="day-btn" data-day="friday"><span class="day-label">Fri</span><span class="day-name">Unconv.</span></button>
+                <button class="day-btn" data-day="saturday"><span class="day-label">Sat</span><span class="day-name">Outdoor</span></button>
+                <button class="day-btn rest" data-day="sunday"><span class="day-label">Sun</span><span class="day-name">Rest</span></button>
+            </section>
+            <section id="workout-display" class="content-area"></section>
+        </div>
+    </main>
+
+    <!-- ====================== NUTRITION ====================== -->
+    <main id="tab-nutrition" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Caravaggio_-_Supper_at_Emmaus_-_National_Gallery%2C_London.jpg/1280px-Caravaggio_-_Supper_at_Emmaus_-_National_Gallery%2C_London.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <!-- 01 Region first -->
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">01</span><h2>Region <span id="current-region" style="font-weight:300;font-size:16px;color:var(--marble-dim)"></span></h2><button class="link-btn" onclick="toggleAutoRotate()"><span id="auto-rotate-status">Auto ON</span></button></div>
+                <div class="region-buttons" id="region-buttons"></div>
+            </section>
+
+            <!-- 02 Day Type: Training / Sport / Rest -->
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">02</span><h2>Day Type</h2><span class="block-meta" id="tracker-date"></span></div>
+                <div class="day-type-selector">
+                    <button class="dtype-btn active" onclick="switchDayType('training',this)">Training</button>
+                    <button class="dtype-btn" onclick="switchDayType('sport',this)">Sport</button>
+                    <button class="dtype-btn" onclick="switchDayType('rest',this)">Rest</button>
+                </div>
+            </section>
+
+            <!-- Macros -->
+            <div class="macro-summary" id="macro-summary"></div>
+
+            <!-- 03 Today's Meals -->
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">03</span><h2>Today</h2></div>
+                <div id="meal-tracker"></div>
+                <div class="tracker-summary" id="tracker-summary"></div>
+            </section>
+
+            <!-- 04 Quick Add -->
+            <section class="content-block calorie-logger">
+                <div class="block-head"><span class="block-num">04</span><h2>Quick Add</h2></div>
+                <p class="note">Meals outside the plan</p>
+                <div class="logger-form">
+                    <input type="text" id="extra-meal-name" placeholder="What did you eat?" class="input">
+                    <div class="logger-macros">
+                        <input type="number" id="extra-cal" placeholder="kcal" class="input input--sm">
+                        <input type="number" id="extra-protein" placeholder="P" class="input input--sm">
+                        <input type="number" id="extra-carbs" placeholder="C" class="input input--sm">
+                        <input type="number" id="extra-fats" placeholder="F" class="input input--sm">
+                    </div>
+                    <button class="btn" onclick="addExtraMeal()">Add</button>
+                </div>
+                <div id="extra-meals-list"></div>
+            </section>
+            <section class="content-area" id="meal-plan"></section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">05</span><h2>Shopping</h2></div>
+                <div class="action-row">
+                    <button class="btn--outline" onclick="toggleShopMode()"><span id="shop-mode-label">Daily</span></button>
+                    <button class="btn--accent" onclick="openWoolworths()">Woolworths</button>
+                    <button class="btn--outline" id="copy-shopping-list" onclick="copyShoppingList()">Copy</button>
+                </div>
+                <div class="freshness-alerts" id="freshness-alerts"></div>
+                <div id="shopping-list"></div>
+                <details class="prefs"><summary>Product Preferences</summary><p class="note">Save preferred brands</p><div id="product-preferences"></div><button class="btn--outline" onclick="savePreferences()" style="margin-top:12px">Save</button></details>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====================== SUPPLEMENTS ====================== -->
+    <main id="tab-supplements" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg/800px-Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Evidence-based only</div>
+            <section class="content-block"><div class="block-head"><span class="block-num">01</span><h2>Essential <span class="tag-green">~$30-50/mo</span></h2></div><div class="supplement-grid" id="supplements-essential"></div></section>
+            <section class="content-block"><div class="block-head"><span class="block-num">02</span><h2>Advanced <span class="tag-green">~$80-120/mo</span></h2></div><div class="supplement-grid" id="supplements-advanced"></div></section>
+            <section class="content-block"><div class="block-head"><span class="block-num">03</span><h2>Skip These</h2></div><div class="supplement-grid" id="supplements-skip"></div></section>
+        </div>
+    </main>
+
+    <!-- ====================== RECOVERY ====================== -->
+    <main id="tab-recovery" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/VanGogh-starry_night_ballance1.jpg/1280px-VanGogh-starry_night_ballance1.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Mind and body</div>
+            <section class="content-block"><div class="block-head"><span class="block-num">01</span><h2>This Week</h2></div><div id="recovery-activities"></div></section>
+            <section class="content-block"><div class="block-head"><span class="block-num">02</span><h2>Walks</h2></div><div id="walks-history"></div></section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">03</span><h2>Toolkit</h2></div>
+                <div class="toolkit-grid">
+                    <div class="toolkit-card"><h4>Cold Exposure</h4><p>Ocean swim 3-10 min</p><span class="toolkit-loc">Icebergs | Bronte | Wylie's</span></div>
+                    <div class="toolkit-card"><h4>Breathwork</h4><p>Box breathing 4-4-4-4</p></div>
+                    <div class="toolkit-card"><h4>Mobility</h4><p>30 min flow</p></div>
+                    <div class="toolkit-card"><h4>Contrast</h4><p>Cold + hot, 3 rounds</p></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====================== CINEMA ====================== -->
+    <main id="tab-cinema" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Salvator_Rosa_-_Democritus_in_Meditation.jpg/800px-Salvator_Rosa_-_Democritus_in_Meditation.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Study the craft</div>
+            <section class="content-block"><div class="block-head"><span class="block-num">01</span><h2>Film of the Week</h2></div><div id="italian-film-of-week"></div></section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">02</span><h2>Accounts</h2></div>
+                <div class="streaming-grid" id="streaming-accounts"></div>
+                <div style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="text" id="letterboxd-username" placeholder="Letterboxd username" class="input" style="max-width:200px" onchange="saveLetterboxd(this.value)"><a href="#" class="btn--outline" onclick="openLetterboxd(event)">Profile</a></div>
+            </section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">03</span><h2>What's On</h2></div>
+                <div class="news-grid">
+                    <a href="https://www.screendaily.com" target="_blank" class="news-card"><span class="news-src">Screen Daily</span></a>
+                    <a href="https://www.indiewire.com" target="_blank" class="news-card"><span class="news-src">IndieWire</span></a>
+                    <a href="https://www.cahiersducinema.com" target="_blank" class="news-card"><span class="news-src">Cahiers</span></a>
+                    <a href="https://www.bfi.org.uk/sight-and-sound" target="_blank" class="news-card"><span class="news-src">Sight & Sound</span></a>
+                    <a href="https://mubi.com/notebook" target="_blank" class="news-card"><span class="news-src">MUBI</span></a>
+                    <a href="https://letterboxd.com/journal/" target="_blank" class="news-card"><span class="news-src">Letterboxd</span></a>
+                </div>
+                <div style="margin-top:12px"><span class="note" style="margin:0">Cinemas:</span> <a href="https://www.palacecinemas.com.au" target="_blank" class="link-btn">Palace</a> <a href="https://www.dendy.com.au" target="_blank" class="link-btn">Dendy</a> <a href="https://www.eventcinemas.com.au" target="_blank" class="link-btn">Event</a></div>
+            </section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">04</span><h2>Watchlists</h2></div>
+                <div class="watchlist-tabs"><button class="wl-tab active" data-list="must_watch" onclick="switchWatchlist('must_watch',this)">Must Watch</button><button class="wl-tab" data-list="world" onclick="switchWatchlist('world',this)">World</button><button class="wl-tab" data-list="directors" onclick="switchWatchlist('directors',this)">Directors</button><button class="wl-tab" data-list="italian" onclick="switchWatchlist('italian',this)">Italian</button><button class="wl-tab" data-list="custom" onclick="switchWatchlist('custom',this)">Mine</button></div>
+                <div id="watchlist-content"></div>
+            </section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">05</span><h2>Add Film</h2></div>
+                <div class="form-row"><input type="text" id="film-title" placeholder="Title" class="input"><input type="text" id="film-director" placeholder="Director" class="input"><input type="text" id="film-year" placeholder="Year" class="input input--sm"><select id="film-list" class="input"><option value="must_watch">Must Watch</option><option value="world">World</option><option value="directors">Directors</option><option value="italian">Italian</option><option value="custom">Mine</option></select><button class="btn" onclick="addFilm()">Add</button></div>
+            </section>
+            <section class="content-block"><div class="block-head"><span class="block-num">06</span><h2>Log</h2></div><div id="watch-log"></div></section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">07</span><h2>Roles</h2></div>
+                <p class="note">Character study lists</p>
+                <div class="form-row"><input type="text" id="role-name" placeholder="Role" class="input"><input type="text" id="role-project" placeholder="Project" class="input"><input type="text" id="role-notes" placeholder="Description" class="input"><button class="btn" onclick="addRole()">Add</button></div>
+                <div id="roles-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====================== LANGUAGE ====================== -->
+    <main id="tab-language" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Language of your ancestors</div>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">01</span><h2>Daily Practice</h2></div>
+                <div class="lang-grid">
+                    <a href="https://www.duolingo.com" target="_blank" class="tool-card tool-link"><h4>Duolingo</h4><p>Continue your course</p><div class="streak-row"><span>Streak</span><input type="number" id="duolingo-streak" placeholder="0" onclick="event.stopPropagation();event.preventDefault()" onchange="saveLanguageProgress('streak',this.value)"><span>days</span></div></a>
+                    <div class="tool-card"><h4>Word of the Day</h4><div id="word-of-day"></div></div>
+                    <div class="tool-card"><h4>Regional Phrase</h4><div id="regional-phrase"></div></div>
+                </div>
+            </section>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">02</span><h2>Podcasts</h2></div>
+                <p class="note">Listen while you train</p>
+                <div id="podcast-list"></div>
+                <h3 class="sub-head" style="margin-top:24px">Saved</h3>
+                <div class="form-row" style="margin-bottom:8px"><input type="text" id="new-podcast-name" placeholder="Name" class="input"><input type="text" id="new-podcast-url" placeholder="Spotify link" class="input"><button class="btn" onclick="addCustomPodcast()">Add</button></div>
+                <div id="custom-podcasts"></div>
+            </section>
+            <section class="content-block"><div class="block-head"><span class="block-num">03</span><h2>Log</h2></div><div id="language-log"></div></section>
+        </div>
+    </main>
+
+    <!-- ====================== SOCIALS ====================== -->
+    <main id="tab-socials" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Content & Brand Building</div>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">01</span><h2>Shooting Schedule</h2></div>
+                <p class="note">What needs to be shot this week</p>
+                <div id="shoot-schedule"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="shoot-title" placeholder="Content / shoot description" class="input">
+                    <input type="date" id="shoot-date" class="input" style="max-width:160px">
+                    <select id="shoot-platform" class="input" style="max-width:120px"><option value="instagram">Instagram</option><option value="tiktok">TikTok</option><option value="both">Both</option><option value="other">Other</option></select>
+                    <button class="btn" onclick="addShoot()">Add</button>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">02</span><h2>Dream Brands</h2></div>
+                <p class="note">Brands to work with. Build the list.</p>
+                <div id="brand-list"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="brand-name" placeholder="Brand name" class="input">
+                    <input type="text" id="brand-category" placeholder="Category (fashion, sport, etc)" class="input">
+                    <input type="text" id="brand-ig" placeholder="@instagram" class="input" style="max-width:160px">
+                    <button class="btn" onclick="addBrand()">Add</button>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">03</span><h2>Inspiration</h2></div>
+                <p class="note">Accounts, influencers, and pages to study</p>
+                <div id="inspo-list"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="inspo-name" placeholder="Name / Account" class="input">
+                    <input type="text" id="inspo-handle" placeholder="@handle or URL" class="input">
+                    <input type="text" id="inspo-note" placeholder="Why (what you like about them)" class="input">
+                    <button class="btn" onclick="addInspo()">Add</button>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">04</span><h2>Content Ideas</h2></div>
+                <p class="note">Quick capture ideas as they come</p>
+                <div id="ideas-list"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="idea-text" placeholder="Idea..." class="input">
+                    <button class="btn" onclick="addIdea()">Add</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====================== FINANCE ====================== -->
+    <main id="tab-finance" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/800px-Meisje_met_de_parel.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Track income & expenses</div>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">01</span><h2>Balance</h2></div>
+                <div class="finance-balance" id="finance-balance"></div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">02</span><h2>Income</h2></div>
+                <div id="income-list"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="income-desc" placeholder="Source (brand deal, commercial, etc)" class="input">
+                    <input type="number" id="income-amount" placeholder="$ AUD" class="input" style="max-width:120px">
+                    <input type="date" id="income-date" class="input" style="max-width:140px">
+                    <button class="btn" onclick="addIncome()">Add</button>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">03</span><h2>Expenses</h2></div>
+                <div id="expense-list"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="expense-desc" placeholder="What (equipment, food, transport)" class="input">
+                    <input type="number" id="expense-amount" placeholder="$ AUD" class="input" style="max-width:120px">
+                    <input type="date" id="expense-date" class="input" style="max-width:140px">
+                    <button class="btn" onclick="addExpense()">Add</button>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">04</span><h2>Brand Deal Tracker</h2></div>
+                <p class="note">Track outreach, status, and payments</p>
+                <div id="deals-list"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="deal-brand" placeholder="Brand" class="input">
+                    <select id="deal-status" class="input" style="max-width:140px"><option value="prospect">Prospect</option><option value="pitched">Pitched</option><option value="negotiating">Negotiating</option><option value="confirmed">Confirmed</option><option value="completed">Completed</option><option value="paid">Paid</option></select>
+                    <input type="number" id="deal-value" placeholder="$ Value" class="input" style="max-width:100px">
+                    <button class="btn" onclick="addDeal()">Add</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====================== PROGRESS ====================== -->
+    <main id="tab-progress" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Caspar_David_Friedrich_-_Der_Wanderer_%C3%BCber_dem_Nebelmeer.jpg/800px-Caspar_David_Friedrich_-_Der_Wanderer_%C3%BCber_dem_Nebelmeer.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Track. Measure. Improve.</div>
+            <div class="stats-row">
+                <div class="stat"><span class="stat-label">Weight</span><span class="stat-val">80.0</span><span class="stat-unit">kg / target 75-77</span></div>
+                <div class="stat"><span class="stat-label">Body Fat</span><span class="stat-val">~17</span><span class="stat-unit">% / target 10-13</span></div>
+                <div class="stat"><span class="stat-label">Week</span><span class="stat-val" id="progress-week">1</span><span class="stat-unit">Phase 1</span></div>
+            </div>
+            <section class="content-block"><div class="block-head"><span class="block-num">01</span><h2>Benchmarks</h2></div><p class="note">Test every 12 weeks</p><div id="benchmark-list"></div></section>
+        </div>
+    </main>
+
+    <!-- Painting credit -->
+    <div class="painting-credit" id="painting-credit"></div>
+
+    <!-- Modal -->
+    <div class="modal-bg" id="exercise-modal"><div class="modal"><button class="modal-x" id="modal-close">&times;</button><h2 id="modal-title"></h2><div class="modal-video" id="modal-video"></div><p id="modal-muscles"></p><p id="modal-notes"></p></div></div>
+
+    <!-- JustWatch Modal -->
+    <div class="modal-bg" id="jw-modal" onclick="if(event.target===this)closeJustWatch()">
+        <div class="modal jw-modal-card">
+            <button class="modal-x" onclick="closeJustWatch()">&times;</button>
+            <div class="jw-header">
+                <h2 id="jw-title">Where to Watch</h2>
+                <p class="jw-sub" id="jw-subtitle"></p>
+            </div>
+            <div class="jw-country-row">
+                <label for="jw-country">Country</label>
+                <select id="jw-country" onchange="onJustWatchCountryChange()"></select>
+            </div>
+            <div id="jw-body" class="jw-body"></div>
+            <div class="jw-footer">
+                <span class="jw-poweredby">POWERED BY</span>
+                <a href="https://www.justwatch.com/" target="_blank" rel="noopener" class="jw-poweredby-name">JustWatch</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/sync.js"></script>
+    <script src="data/workouts.js"></script>
+    <script src="data/nutrition.js"></script>
+    <script src="data/supplements.js"></script>
+    <script src="data/cinema.js"></script>
+    <script src="js/justwatch.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
