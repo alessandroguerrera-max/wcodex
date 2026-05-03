@@ -52,7 +52,7 @@ function loadData(key, defaultValue) {
 
 // Queue a sync operation (debounced — waits 2 seconds of inactivity before pushing)
 function queueSync(key, value) {
-    if (!supabase || !deviceId) return;
+    if (!sb || !deviceId) return;
 
     // Remove existing entry for this key
     syncQueue = syncQueue.filter(item => item.key !== key);
@@ -65,7 +65,7 @@ function queueSync(key, value) {
 
 // Push all queued changes to Supabase
 async function flushSyncQueue() {
-    if (!supabase || !deviceId || syncQueue.length === 0) return;
+    if (!sb || !deviceId || syncQueue.length === 0) return;
 
     const batch = [...syncQueue];
     syncQueue = [];
@@ -73,7 +73,7 @@ async function flushSyncQueue() {
     for (const item of batch) {
         try {
             const jsonValue = typeof item.value === 'string' ? JSON.parse(item.value) : item.value;
-            await supabase.from('warrior_data').upsert({
+            await sb.from('warrior_data').upsert({
                 device_id: deviceId,
                 data_key: item.key,
                 data_value: jsonValue,
@@ -89,10 +89,10 @@ async function flushSyncQueue() {
 
 // Pull all data from cloud on load
 async function pullFromCloud() {
-    if (!supabase || !deviceId) return;
+    if (!sb || !deviceId) return;
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await sb
             .from('warrior_data')
             .select('data_key, data_value, updated_at')
             .eq('device_id', deviceId);
@@ -122,7 +122,7 @@ const originalSetItem = localStorage.setItem.bind(localStorage);
 localStorage.setItem = function(key, value) {
     originalSetItem(key, value);
     // Auto-sync any warrior_ prefixed keys to cloud
-    if (key.startsWith('warrior_') && supabase && deviceId) {
+    if (key.startsWith('warrior_') && sb && deviceId) {
         try {
             const parsed = JSON.parse(value);
             queueSync(key, parsed);
