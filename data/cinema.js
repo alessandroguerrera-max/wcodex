@@ -66,26 +66,26 @@ const DIRECTOR_STUDIES = {
 
 // World Cinema — curated from global critics, festivals, and traditions beyond Hollywood
 const WORLD_CINEMA = [
-    { title: "Parasite", director: "Bong Joon-ho", year: 2019, country: "South Korea", why: "Palme d'Or + Best Picture. Genre-bending class warfare." },
-    { title: "In the Mood for Love", director: "Wong Kar-wai", year: 2000, country: "Hong Kong", why: "Restraint as performance. Every frame is a painting." },
-    { title: "Spirited Away", director: "Hayao Miyazaki", year: 2001, country: "Japan", why: "Animation as high art. Imagination without limits." },
-    { title: "Amour", director: "Michael Haneke", year: 2012, country: "Austria/France", why: "Devastating intimacy. Two actors carrying an entire film in one apartment." },
-    { title: "City of God", director: "Fernando Meirelles", year: 2002, country: "Brazil", why: "Kinetic energy and non-professional actors creating raw authenticity." },
-    { title: "The Lives of Others", director: "Florian Henckel von Donnersmarck", year: 2006, country: "Germany", why: "Surveillance state Berlin. A Stasi officer discovers humanity through art." },
-    { title: "Oldboy", director: "Park Chan-wook", year: 2003, country: "South Korea", why: "Revenge as opera. The corridor fight scene changed action cinema." },
-    { title: "Pan's Labyrinth", director: "Guillermo del Toro", year: 2006, country: "Spain/Mexico", why: "Dark fairy tale during Spanish Civil War. Fantasy as political resistance." },
-    { title: "Shoplifters", director: "Hirokazu Kore-eda", year: 2018, country: "Japan", why: "What makes a family? Quiet, devastating Japanese humanism." },
-    { title: "A Separation", director: "Asghar Farhadi", year: 2011, country: "Iran", why: "Moral complexity where every character is right and wrong simultaneously." },
-    { title: "Ida", director: "Paweł Pawlikowski", year: 2013, country: "Poland", why: "Shot in 4:3 black and white. Stunning composition. Every frame is deliberate." },
-    { title: "Yi Yi", director: "Edward Yang", year: 2000, country: "Taiwan", why: "A Taipei family across three generations. 3 hours of pure life." },
-    { title: "Leviathan", director: "Andrey Zvyagintsev", year: 2014, country: "Russia", why: "Modern Russian tragedy. Power, corruption, and biblical resonance." },
-    { title: "Timbuktu", director: "Abderrahmane Sissako", year: 2014, country: "Mauritania", why: "Life under jihadist occupation. African cinema at its most poetic and political." },
-    { title: "The Handmaiden", director: "Park Chan-wook", year: 2016, country: "South Korea", why: "Erotic thriller with the most satisfying plot twists in modern cinema." },
-    { title: "Stalker", director: "Andrei Tarkovsky", year: 1979, country: "Russia", why: "Philosophical science fiction. The most visually arresting film ever made." },
-    { title: "Portrait of a Lady on Fire", director: "Céline Sciamma", year: 2019, country: "France", why: "The gaze as love. How looking at someone becomes an act of creation." },
-    { title: "Tsotsi", director: "Gavin Hood", year: 2005, country: "South Africa", why: "A young gangster finds redemption through an abandoned baby. Raw Johannesburg." },
-    { title: "Rashomon", director: "Akira Kurosawa", year: 1950, country: "Japan", why: "Invented the unreliable narrator structure. Every film student starts here." },
-    { title: "The White Ribbon", director: "Michael Haneke", year: 2009, country: "Austria/Germany", why: "Pre-WWI German village. Evil as mundane. Austere, chilling, perfect." }
+    { title: "Parasite", director: "Bong Joon-ho", year: 2019, country: "South Korea", why: "Palme d'Or + Best Picture. Genre-bending class warfare.", letterboxd: "parasite-2019" },
+    { title: "In the Mood for Love", director: "Wong Kar-wai", year: 2000, country: "Hong Kong", why: "Restraint as performance. Every frame is a painting.", letterboxd: "in-the-mood-for-love" },
+    { title: "Spirited Away", director: "Hayao Miyazaki", year: 2001, country: "Japan", why: "Animation as high art. Imagination without limits.", letterboxd: "spirited-away" },
+    { title: "Amour", director: "Michael Haneke", year: 2012, country: "Austria/France", why: "Devastating intimacy. Two actors carrying an entire film in one apartment.", letterboxd: "amour" },
+    { title: "City of God", director: "Fernando Meirelles", year: 2002, country: "Brazil", why: "Kinetic energy and non-professional actors creating raw authenticity.", letterboxd: "city-of-god" },
+    { title: "The Lives of Others", director: "Florian Henckel von Donnersmarck", year: 2006, country: "Germany", why: "Surveillance state Berlin. A Stasi officer discovers humanity through art.", letterboxd: "the-lives-of-others" },
+    { title: "Oldboy", director: "Park Chan-wook", year: 2003, country: "South Korea", why: "Revenge as opera. The corridor fight scene changed action cinema.", letterboxd: "oldboy" },
+    { title: "Pan's Labyrinth", director: "Guillermo del Toro", year: 2006, country: "Spain/Mexico", why: "Dark fairy tale during Spanish Civil War. Fantasy as political resistance.", letterboxd: "pans-labyrinth" },
+    { title: "Shoplifters", director: "Hirokazu Kore-eda", year: 2018, country: "Japan", why: "What makes a family? Quiet, devastating Japanese humanism.", letterboxd: "shoplifters" },
+    { title: "A Separation", director: "Asghar Farhadi", year: 2011, country: "Iran", why: "Moral complexity where every character is right and wrong simultaneously.", letterboxd: "a-separation" },
+    { title: "Ida", director: "Paweł Pawlikowski", year: 2013, country: "Poland", why: "Shot in 4:3 black and white. Stunning composition. Every frame is deliberate.", letterboxd: "ida-2013" },
+    { title: "Yi Yi", director: "Edward Yang", year: 2000, country: "Taiwan", why: "A Taipei family across three generations. 3 hours of pure life.", letterboxd: "yi-yi" },
+    { title: "Leviathan", director: "Andrey Zvyagintsev", year: 2014, country: "Russia", why: "Modern Russian tragedy. Power, corruption, and biblical resonance.", letterboxd: "leviathan-2014" },
+    { title: "Timbuktu", director: "Abderrahmane Sissako", year: 2014, country: "Mauritania", why: "Life under jihadist occupation. African cinema at its most poetic and political.", letterboxd: "timbuktu-2014" },
+    { title: "The Handmaiden", director: "Park Chan-wook", year: 2016, country: "South Korea", why: "Erotic thriller with the most satisfying plot twists in modern cinema.", letterboxd: "the-handmaiden" },
+    { title: "Stalker", director: "Andrei Tarkovsky", year: 1979, country: "Russia", why: "Philosophical science fiction. The most visually arresting film ever made.", letterboxd: "stalker" },
+    { title: "Portrait of a Lady on Fire", director: "Céline Sciamma", year: 2019, country: "France", why: "The gaze as love. How looking at someone becomes an act of creation.", letterboxd: "portrait-of-a-lady-on-fire" },
+    { title: "Tsotsi", director: "Gavin Hood", year: 2005, country: "South Africa", why: "A young gangster finds redemption through an abandoned baby. Raw Johannesburg.", letterboxd: "tsotsi" },
+    { title: "Rashomon", director: "Akira Kurosawa", year: 1950, country: "Japan", why: "Invented the unreliable narrator structure. Every film student starts here.", letterboxd: "rashomon" },
+    { title: "The White Ribbon", director: "Michael Haneke", year: 2009, country: "Austria/Germany", why: "Pre-WWI German village. Evil as mundane. Austere, chilling, perfect.", letterboxd: "the-white-ribbon" }
 ];
 
 // Streaming platforms — user can add their accounts
@@ -103,14 +103,14 @@ const STREAMING_PLATFORMS = [
 
 // Must-watch films for any actor
 const MUST_WATCH = [
-    { title: "Taxi Driver", director: "Martin Scorsese", year: 1976, why: "Character study masterclass. De Niro's preparation is legendary." },
-    { title: "There Will Be Blood", director: "Paul Thomas Anderson", year: 2007, why: "Daniel Day-Lewis delivering perhaps the greatest screen performance ever." },
-    { title: "The Godfather", director: "Francis Ford Coppola", year: 1972, why: "Italian-American identity on screen. Brando and Pacino redefining acting." },
-    { title: "Moonlight", director: "Barry Jenkins", year: 2016, why: "Three actors playing one character across a lifetime. Study in restraint and vulnerability." },
-    { title: "Raging Bull", director: "Martin Scorsese", year: 1980, why: "Physical transformation as character. De Niro gained 27kg for this role." },
-    { title: "Do the Right Thing", director: "Spike Lee", year: 1989, why: "How to be political without being preachy. Every character has a point." },
-    { title: "Creed", director: "Ryan Coogler", year: 2015, why: "Michael B. Jordan reference point. How to carry a franchise with charisma and depth." },
-    { title: "In the Mood for Love", director: "Wong Kar-wai", year: 2000, why: "What's NOT said is more powerful than what is. Restraint as performance." },
-    { title: "Parasite", director: "Bong Joon-ho", year: 2019, why: "Genre-bending storytelling. How tone shifts keep an audience off-balance." },
-    { title: "Y Tu Mamá También", director: "Alfonso Cuarón", year: 2001, why: "Natural, improvisational-feeling performances within a structured narrative." }
+    { title: "Taxi Driver", director: "Martin Scorsese", year: 1976, why: "Character study masterclass. De Niro's preparation is legendary.", letterboxd: "taxi-driver" },
+    { title: "There Will Be Blood", director: "Paul Thomas Anderson", year: 2007, why: "Daniel Day-Lewis delivering perhaps the greatest screen performance ever.", letterboxd: "there-will-be-blood" },
+    { title: "The Godfather", director: "Francis Ford Coppola", year: 1972, why: "Italian-American identity on screen. Brando and Pacino redefining acting.", letterboxd: "the-godfather" },
+    { title: "Moonlight", director: "Barry Jenkins", year: 2016, why: "Three actors playing one character across a lifetime. Study in restraint and vulnerability.", letterboxd: "moonlight-2016" },
+    { title: "Raging Bull", director: "Martin Scorsese", year: 1980, why: "Physical transformation as character. De Niro gained 27kg for this role.", letterboxd: "raging-bull" },
+    { title: "Do the Right Thing", director: "Spike Lee", year: 1989, why: "How to be political without being preachy. Every character has a point.", letterboxd: "do-the-right-thing" },
+    { title: "Creed", director: "Ryan Coogler", year: 2015, why: "Michael B. Jordan reference point. How to carry a franchise with charisma and depth.", letterboxd: "creed" },
+    { title: "In the Mood for Love", director: "Wong Kar-wai", year: 2000, why: "What's NOT said is more powerful than what is. Restraint as performance.", letterboxd: "in-the-mood-for-love" },
+    { title: "Parasite", director: "Bong Joon-ho", year: 2019, why: "Genre-bending storytelling. How tone shifts keep an audience off-balance.", letterboxd: "parasite-2019" },
+    { title: "Y Tu Mamá También", director: "Alfonso Cuarón", year: 2001, why: "Natural, improvisational-feeling performances within a structured narrative.", letterboxd: "y-tu-mama-tambien" }
 ];

@@ -1209,15 +1209,27 @@ function initCinema() {
     fetchLetterboxd(lbUser);
 }
 
-// Build a Letterboxd URL — uses the slug if available, otherwise falls back
-// to a title search (Letterboxd auto-redirects to the canonical film page
-// when there's an exact match).
+// Build a Letterboxd URL — always returns a /film/{slug}/ URL so iOS
+// universal links open the Letterboxd app instead of Safari. Uses the
+// pre-defined slug if present, otherwise auto-slugifies the title.
+function letterboxdSlugify(s) {
+    return (s || '')
+        .normalize('NFKD')
+        .replace(/[̀-ͯ]/g, '')   // strip diacritics (é → e)
+        .toLowerCase()
+        .replace(/['‘’]/g, '')   // strip apostrophes
+        .replace(/&/g, 'and')
+        .replace(/[^a-z0-9]+/g, '-')       // non-alphanum → hyphen
+        .replace(/^-+|-+$/g, '');          // trim leading/trailing hyphens
+}
+
 function letterboxdUrl(film) {
     if (film && film.letterboxd) {
         return `https://letterboxd.com/film/${film.letterboxd}/`;
     }
     const t = (film && film.title) || (typeof film === 'string' ? film : '');
-    return `https://letterboxd.com/search/films/${encodeURIComponent(t)}/`;
+    const slug = letterboxdSlugify(t);
+    return `https://letterboxd.com/film/${slug || 'unknown'}/`;
 }
 
 // === LETTERBOXD RSS INTEGRATION ===
