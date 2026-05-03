@@ -4,7 +4,7 @@
 const SUPABASE_URL = 'https://mgfohefbptilbjowknxy.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nZm9oZWZicHRpbGJqb3drbnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzEwMjgsImV4cCI6MjA5MTUwNzAyOH0.JSixSKd0Bjx4RUGYMh3VwnSb1Cn0iWZgP8JDBQzxZlo';
 
-let supabase = null;
+let sb = null;
 let deviceId = null;
 let syncQueue = [];
 let syncTimer = null;
@@ -12,7 +12,7 @@ let syncTimer = null;
 // Initialize
 function initSync() {
     try {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } catch (e) {
         console.log('Supabase not available, using localStorage only');
         return;
