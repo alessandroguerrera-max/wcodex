@@ -317,16 +317,16 @@ const WORKOUTS = {
             {
                 title: "Phase 1: Beach Run & Sprints",
                 time: "20 min",
-                subtitle: "Location: Bondi, Bronte, Coogee, Manly — any beach with soft sand and stairs.",
+                subtitle: "Location (LA): Santa Monica or Venice Beach for soft sand, or the Santa Monica Stairs (4th & Adelaide) for a stair-sprint-only version if skipping the beach drive.",
                 exercises: [
                     { name: "Sand sprint intervals (all-out)", sets: "6 x 50m", weight: "—", rest: "Walk back recovery" },
-                    { name: "Beach stair sprints", sets: "4 x up", weight: "—", rest: "Walk down", notes: "Bondi-Bronte coastal stairs or equivalent" }
+                    { name: "Stair sprints", sets: "4 x up", weight: "—", rest: "Walk down", notes: "Santa Monica Stairs, or hill sprints at Runyon Canyon/Griffith Park if closer" }
                 ]
             },
             {
                 title: "Phase 2: Outdoor Calisthenics",
                 time: "25 min",
-                subtitle: "Location: Bondi outdoor gym, Maroubra bars, Sydney Park stations.",
+                subtitle: "Location (LA): Muscle Beach Venice — the original outdoor calisthenics gym, pull-up bars and rings on site.",
                 exercises: [
                     { name: "Muscle-up", sets: "5 x 3-5", weight: "Bodyweight", rest: "2 min", video: "muscle_up" },
                     { name: "Dips (parallel bars)", sets: "4 x 12-15", weight: "Bodyweight", rest: "60 sec", video: "parallel_bar_dips" },
@@ -350,7 +350,7 @@ const WORKOUTS = {
             {
                 title: "Phase 4: Swim",
                 time: "15-20 min",
-                subtitle: "Bondi Icebergs, Bronte Baths, Wylie's Baths, or ocean.",
+                subtitle: "Santa Monica or Venice ocean swim, or a lap pool if one's more convenient that day.",
                 exercises: [
                     { name: "Freestyle swim", sets: "400-800m", weight: "—", rest: "Moderate pace", notes: "Decompresses spine, builds lats and serratus. The Romans trained in water." }
                 ]
@@ -369,8 +369,8 @@ const WORKOUTS = {
                 time: "30-45 min",
                 subtitle: "Full rest from resistance training. The discipline of rest is part of the discipline.",
                 exercises: [
-                    { name: "Coastal walk (Bondi to Coogee, Spit to Manly)", sets: "45-60 min", weight: "—", rest: "—" },
-                    { name: "OR: Easy swim (ocean pool or beach)", sets: "20-30 min", weight: "—", rest: "—" },
+                    { name: "Walk/hike (Runyon Canyon, Griffith Park, or Santa Monica/Venice boardwalk)", sets: "45-60 min", weight: "—", rest: "—" },
+                    { name: "OR: Easy swim (ocean or pool)", sets: "20-30 min", weight: "—", rest: "—" },
                     { name: "OR: Mobility flow", sets: "30 min", weight: "—", rest: "—" },
                     { name: "OR: Cold ocean swim + hot shower (contrast)", sets: "3-10 min cold", weight: "—", rest: "—" }
                 ]

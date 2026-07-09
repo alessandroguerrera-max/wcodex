@@ -89,28 +89,28 @@ const PODCASTS = [
     { name: 'Learn Italian with Lucrezia', desc: 'Grammar, culture, and real Italian life', url: 'https://open.spotify.com/show/2KR8UZRKf9zHT7kbvUhFhx', level: 'Beginner-Intermediate' }
 ];
 
-const SYDNEY_WALKS = [
-    { name: 'Bondi to Coogee Coastal Walk', distance: '6 km', time: '2 hrs', history: 'This path follows ancient Aboriginal trading routes of the Bidjigal and Gadigal peoples. The sandstone cliffs are 230 million years old. Waverley Cemetery (1877) along the route holds the graves of Henry Lawson and Dorothea Mackellar.', vibe: 'Ocean views, cliffs, rock pools' },
-    { name: 'Spit Bridge to Manly', distance: '10 km', time: '3-4 hrs', history: 'Passes through Sydney Harbour National Park and Aboriginal rock engravings at Grotto Point, estimated at 2,000-5,000 years old. The track passes former military installations from WWII — gun emplacements watching for Japanese submarines.', vibe: 'Bushland, harbour views, beaches' },
-    { name: 'The Rocks Heritage Walk', distance: '2 km', time: '1.5 hrs', history: 'Australia\'s oldest European neighbourhood (1788). Convict-built sandstone buildings, the Suez Canal (narrowest laneway), Cadman\'s Cottage (1816 — oldest surviving residential building in Sydney). The bubonic plague hit here in 1900.', vibe: 'History, architecture, harbourside' },
-    { name: 'Barangaroo to Pyrmont', distance: '4 km', time: '1.5 hrs', history: 'Named after Barangaroo, a powerful Cammeraygal woman who defied colonial authority. The foreshore was a shipping container terminal until 2012. Pyrmont was once the most densely populated suburb in Australia — a wool and shipping hub.', vibe: 'Waterfront, modern architecture, sunset' },
-    { name: 'Centennial Park Loop', distance: '3.8 km', time: '1 hr', history: 'Opened in 1888 for Australia\'s centenary. The federation of Australia was proclaimed here on January 1, 1901. Originally swampland used by the Gadigal people. The park has 15,000 trees and 8 ponds.', vibe: 'Parkland, cycling, birding, tranquil' },
-    { name: 'Watsons Bay & South Head', distance: '4 km', time: '1.5 hrs', history: 'Australia\'s oldest fishing village. The Gap — dramatic 60m cliffs. Hornby Lighthouse (1858) guided ships through the treacherous Heads. Camp Cove was where the First Fleet marines first landed in 1788.', vibe: 'Harbour views, cliffs, lighthouse, fish & chips' },
-    { name: 'Cockatoo Island Walk', distance: '2 km', time: '1.5 hrs', history: 'A UNESCO World Heritage Site. Used as a convict prison (1839-1869), then a naval dockyard building warships through two World Wars. The dry docks, cranes, and industrial buildings are preserved. You can camp overnight on the island.', vibe: 'Industrial heritage, harbour island, art installations' },
-    { name: 'Newtown to Marrickville Food Trail', distance: '3 km', time: '2 hrs', history: 'Newtown was Sydney\'s bohemian hub since the 1970s. King Street\'s Victorian terraces house some of Australia\'s most diverse food. Marrickville was historically Greek and Portuguese — now Vietnamese, Thai, and everything else. A food walk IS a history walk.', vibe: 'Street art, food diversity, inner-west culture' }
+// LA_WALKS — active while based in LA. Sydney data preserved in git history
+// for whenever he's back there; swap back rather than deleting this version.
+const LA_WALKS = [
+    { name: 'Runyon Canyon Loop', distance: '5.2 km', time: '1.5-2 hrs', history: 'The closest real hike to Hollywood — most of the park is a 15-20 min drive or rideshare from the Netflix-building area. Hillside trail with panoramic views over the city and a Hollywood Sign sightline near the top.', vibe: 'Hill sprints, city views, busy but energizing' },
+    { name: 'Griffith Park — Mount Hollywood / Observatory Trail', distance: '5-8 km depending on route', time: '2-3 hrs', history: 'One of the largest urban parks in North America. Trails climb to the Griffith Observatory and offer close-up Hollywood Sign views without the Runyon crowds.', vibe: 'Bigger hike, more solitude, observatory at the top' },
+    { name: 'Santa Monica Stairs & Palisades Park Bluff Walk', distance: '3-4 km', time: '1-1.5 hrs', history: 'The Santa Monica Stairs (4th & Adelaide) are a well-known stair-training spot; Palisades Park runs along the bluff above the beach with ocean views the length of it.', vibe: 'Stairs, ocean views, ~30 min drive from Hollywood' },
+    { name: 'Venice Boardwalk & Canals', distance: '4-5 km', time: '1.5 hrs', history: 'Venice was built in the early 1900s as "Venice of America," with a real canal district still intact a few blocks off the boardwalk. Muscle Beach — the original outdoor gym — is right on this route.', vibe: 'Beachfront, canals, people-watching, Muscle Beach' },
+    { name: 'The Getty Center Grounds', distance: '2-3 km of walking', time: '1.5-2 hrs', history: 'Free general admission (parking is paid) — a tram ride up the hill to gardens and hilltop city views, functions as an easy walk plus an art/recovery activity in one trip.', vibe: 'Art, gardens, hilltop views, low-impact' },
+    { name: 'Silver Lake Reservoir Loop', distance: '3.4 km', time: '45-60 min', history: 'A flat, paved loop around the reservoir in a quieter residential neighborhood — good for an easy recovery walk without a drive to the coast.', vibe: 'Flat, quiet, easy weekday option' }
 ];
 
 const RECOVERY_ACTIVITIES = [
-    { type: 'Art', activity: 'Visit Art Gallery of NSW (free entry)', location: 'The Domain', note: 'Walking there from CBD = 20 min walk through the gardens' },
-    { type: 'Art', activity: 'MCA (Museum of Contemporary Art) — free entry', location: 'Circular Quay', note: 'Combine with a Rocks heritage walk' },
-    { type: 'Pottery', activity: 'Pottery class — Clay Sydney or The Ceramic Studio', location: 'Various', note: 'Book a wheel-throwing class. Content opportunity.' },
-    { type: 'Nature', activity: 'Royal Botanic Gardens walk', location: 'CBD', note: '30 hectares of gardens. Free. Walk + stretch by the harbour.' },
-    { type: 'Swim', activity: 'Ocean pool swim — rotate a different pool each week', location: 'Coastal', note: 'Icebergs, Bronte, Wylie\'s, Mahon Pool, McIver\'s' },
-    { type: 'Culture', activity: 'Carriageworks Farmers Market (Saturday)', location: 'Eveleigh', note: 'Buy fresh produce for the week. Content opportunity — The Foodie pillar.' },
-    { type: 'Nature', activity: 'Manly to Shelly Beach snorkel', location: 'Manly', note: 'Easy 10 min walk + snorkelling for active recovery' },
-    { type: 'Art', activity: 'White Rabbit Gallery (free) — contemporary Chinese art', location: 'Chippendale', note: 'One of the world\'s best private collections' },
-    { type: 'Culture', activity: 'Sydney Fish Market — walk, buy, learn', location: 'Pyrmont', note: 'Learn about fish sourcing. Buy dinner. Content opportunity.' },
-    { type: 'Nature', activity: 'Blue Mountains day trip — Three Sisters walk', location: 'Katoomba (1.5hr drive)', note: 'Bigger adventure recovery. Breathtaking views. History of the Gundungurra people.' }
+    { type: 'Art', activity: 'The Getty Center — free general admission', location: 'Brentwood', note: 'Parking is paid; combine with the grounds walk above' },
+    { type: 'Art', activity: 'LACMA', location: 'Miracle Mile', note: 'Check current free-admission days before going' },
+    { type: 'Pottery', activity: 'Pottery class — local ceramics studio', location: 'Various', note: 'Book a wheel-throwing class. Content opportunity.' },
+    { type: 'Nature', activity: 'Griffith Park / Runyon Canyon hike', location: 'Hollywood Hills', note: 'Closest real nature access to the current apartment' },
+    { type: 'Swim', activity: 'Ocean swim — Santa Monica or Venice', location: 'Coastal (~30 min drive)', note: 'Or a lap pool if the drive isn\'t worth it that day' },
+    { type: 'Culture', activity: 'Hollywood Farmers Market (Sunday)', location: 'Hollywood', note: 'Buy fresh produce for the week — walking distance-ish depending on exact location' },
+    { type: 'Culture', activity: 'Grand Central Market', location: 'Downtown LA', note: 'Historic food hall — good food-culture content opportunity' },
+    { type: 'Nature', activity: 'Muscle Beach Venice', location: 'Venice', note: 'Combine with the Venice boardwalk walk and an outdoor training session' },
+    { type: 'Nature', activity: 'Malibu day trip — a coastal state beach', location: '30-45 min drive', note: 'Bigger adventure recovery, needs the car' },
+    { type: 'Culture', activity: 'Explore a new neighborhood on foot', location: 'Varies', note: 'Silver Lake, Los Feliz, Downtown — good for orienting to LA and scouting content locations' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCinema();
     initSocials();
     initFinance();
+    initJournal();
     initHeroGallery();
     renderWorkout('monday');
     updateWeekAndPhase();
@@ -254,7 +255,7 @@ function navigateTo(tab) {
     document.body.classList.remove('menu-open');
     window.scrollTo({ top: 0 });
 
-    const titles = { home:'The Warrior\'s Codex', training:'Training — Prepare for Battle', nutrition:'Nutrition — The Warrior\'s Table', supplements:'Supplements — The Armoury Within', recovery:'Recovery — Rest Like a Warrior', cinema:'Cinema', language:'Italiano — Impara l\'Italiano', socials:'Socials', finance:'Finance', progress:'Progress — The Path Forward' };
+    const titles = { home:'The Warrior\'s Codex', training:'Training — Prepare for Battle', nutrition:'Nutrition — The Warrior\'s Table', supplements:'Supplements — The Armoury Within', recovery:'Recovery — Rest Like a Warrior', cinema:'Cinema', language:'Italiano — Impara l\'Italiano', socials:'Socials', finance:'Finance', progress:'Progress — The Path Forward', journal:'Journal — The Warrior\'s Log' };
     document.getElementById('header-page-title').textContent = titles[tab] || tab;
     setTimeout(initScrollReveal, 100);
 }
@@ -743,7 +744,7 @@ function updateShoppingProgress() {
     localStorage.setItem(`warrior_shopping_progress_${today}`, JSON.stringify({ total, checked }));
 }
 
-function openWoolworths() {
+function openGroceryShop() {
     const regionKey = getCurrentRegion();
     const shopping = ITALIAN_REGIONS[regionKey]?.shopping;
     if (!shopping) return;
@@ -752,15 +753,14 @@ function openWoolworths() {
     Object.values(shopping).forEach(items => {
         items.forEach(item => { allItems.push(prefs[item.item] || item.item); });
     });
-    // Woolworths search — open with first few items as search
-    // Woolworths doesn't have a public cart API, so we open search pages
-    const searchTerm = allItems.slice(0, 5).join(', ');
-    const url = `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(allItems[0])}`;
+    // Store-agnostic search — no single chain works everywhere he might be
+    // (was hardcoded to Woolworths, which is Australia-only and useless in LA).
+    // Google Shopping search on the first item, full list copied for the rest.
+    const url = `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(allItems[0])}`;
     window.open(url, '_blank');
-    // Also copy full list for manual adding
     const listText = allItems.map(i => `- ${i}`).join('\n');
     navigator.clipboard.writeText(listText).then(() => {
-        alert(`Woolworths opened for "${allItems[0]}".\n\nFull shopping list copied to clipboard — paste into Woolworths search or notes.`);
+        alert(`Shopping search opened for "${allItems[0]}".\n\nFull shopping list copied to clipboard — paste into your grocery app or notes.`);
     });
 }
 
@@ -814,7 +814,7 @@ function savePreferences() {
     });
     localStorage.setItem('warrior_product_prefs', JSON.stringify(prefs));
     renderShoppingList(getCurrentRegion());
-    alert('Preferences saved! Your preferred brands will show in shopping lists and Woolworths links.');
+    alert('Preferences saved! Your preferred brands will show in shopping lists and the Shop search link.');
 }
 
 // === FRESHNESS ALERTS ===
@@ -865,7 +865,7 @@ function initRecovery() {
     const week = getWeekNumber();
     // Rotate activities and walks based on week
     const activityCount = 3;
-    const walkIdx = (week - 1) % SYDNEY_WALKS.length;
+    const walkIdx = (week - 1) % LA_WALKS.length;
     const shuffled = [...RECOVERY_ACTIVITIES].sort(() => 0.5 - Math.seededRandom(week));
 
     const container = document.getElementById('recovery-activities');
@@ -875,8 +875,8 @@ function initRecovery() {
     ).join('');
 
     const walksContainer = document.getElementById('walks-history');
-    const walk = SYDNEY_WALKS[walkIdx];
-    const nextWalk = SYDNEY_WALKS[(walkIdx + 1) % SYDNEY_WALKS.length];
+    const walk = LA_WALKS[walkIdx];
+    const nextWalk = LA_WALKS[(walkIdx + 1) % LA_WALKS.length];
     walksContainer.innerHTML = `
         <div class="walk-card featured"><h4>This Week: ${walk.name}</h4><div class="walk-meta">${walk.distance} — ${walk.time}</div><p class="walk-vibe">${walk.vibe}</p><div class="walk-history"><strong>History:</strong> ${walk.history}</div></div>
         <div class="walk-card"><h4>Next Week: ${nextWalk.name}</h4><div class="walk-meta">${nextWalk.distance} — ${nextWalk.time}</div><p class="walk-vibe">${nextWalk.vibe}</p></div>
@@ -1062,6 +1062,113 @@ function renderIdeas() {
     if (!el) return;
     if (list.length === 0) { el.innerHTML = '<p class="note">No ideas yet</p>'; return; }
     el.innerHTML = list.map((item, i) => `<div class="list-row"><div class="row-info"><span>${item.text}</span><span class="row-meta">${item.date}</span></div><button class="link-btn" onclick="removeItem('warrior_ideas',${i},renderIdeas)">×</button></div>`).join('');
+}
+
+// === JOURNAL TAB ===
+
+const DEFAULT_JOURNAL_TASKS = [
+    { text: 'Read the script/material connected to Jeff and Riftwar', done: false },
+    { text: 'Send updated bloodwork for review', done: true },
+    { text: 'Elevated CK explained (big workout day before draw) — not a blocker', done: true },
+    { text: 'Take + send before photos', done: true },
+    { text: 'Take body measurements (waist, chest, shoulders, arms, thighs)', done: false },
+    { text: 'Build a consistent bedtime protecting 7 hours of sleep', done: false },
+    { text: 'Start the weekly training structure — nothing left blocking this', done: false },
+    { text: 'Low-priority: mention CK result to Dr. Solomon at next routine visit', done: false }
+];
+
+const DEFAULT_JOURNAL_CONTACTS = [
+    { name: 'Sam', role: 'VP at CBS', note: 'Get full name/exact division before activating this relationship' },
+    { name: 'Kurt Wimmer', role: 'Director — training partner, home gym access', note: 'Verify which film credit — public filmography doesn\'t show a title called Ida' },
+    { name: 'Chris', role: 'Annapurna Productions — training partner (Woodland Hills gym)', note: 'Get exact role/title' },
+    { name: 'Carly & Bree', role: 'Management agency (London + LA) — house-sit hosts', note: 'Existing warm relationship, not a cold contact' }
+];
+
+function seedIfEmpty(key, defaultValue) {
+    if (localStorage.getItem(key) === null) {
+        localStorage.setItem(key, JSON.stringify(defaultValue));
+    }
+}
+
+function initJournal() {
+    seedIfEmpty('warrior_journal_tasks', DEFAULT_JOURNAL_TASKS);
+    seedIfEmpty('warrior_journal_contacts', DEFAULT_JOURNAL_CONTACTS);
+    renderJournalEntries();
+    renderJournalTasks();
+    renderJournalContacts();
+}
+
+function addJournalEntry() {
+    const textEl = document.getElementById('journal-entry-text');
+    const text = textEl.value.trim();
+    if (!text) return;
+    const list = JSON.parse(localStorage.getItem('warrior_journal_entries') || '[]');
+    list.unshift({ text, date: new Date().toISOString() });
+    localStorage.setItem('warrior_journal_entries', JSON.stringify(list));
+    textEl.value = '';
+    renderJournalEntries();
+}
+
+function renderJournalEntries() {
+    const list = JSON.parse(localStorage.getItem('warrior_journal_entries') || '[]');
+    const el = document.getElementById('journal-log');
+    if (!el) return;
+    if (list.length === 0) { el.innerHTML = '<p class="note">No entries yet — log the first one above.</p>'; return; }
+    el.innerHTML = list.map((entry, i) => {
+        const d = new Date(entry.date);
+        const stamp = d.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' }) + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        return `<div class="list-row"><div class="row-info"><span>${entry.text}</span><span class="row-meta">${stamp}</span></div><button class="link-btn" onclick="removeItem('warrior_journal_entries',${i},renderJournalEntries)">×</button></div>`;
+    }).join('');
+}
+
+function addJournalTask() {
+    const input = document.getElementById('new-task-text');
+    const text = input.value.trim();
+    if (!text) return;
+    const list = JSON.parse(localStorage.getItem('warrior_journal_tasks') || '[]');
+    list.push({ text, done: false });
+    localStorage.setItem('warrior_journal_tasks', JSON.stringify(list));
+    input.value = '';
+    renderJournalTasks();
+}
+
+function renderJournalTasks() {
+    const list = JSON.parse(localStorage.getItem('warrior_journal_tasks') || '[]');
+    const el = document.getElementById('journal-tasks');
+    if (!el) return;
+    if (list.length === 0) { el.innerHTML = '<p class="note">No tasks tracked</p>'; return; }
+    el.innerHTML = list.map((t, i) => `<div class="list-row ${t.done ? 'row-done' : ''}"><input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleJournalTask(${i})" class="row-check"><div class="row-info"><span>${t.text}</span></div><button class="link-btn" onclick="removeItem('warrior_journal_tasks',${i},renderJournalTasks)">×</button></div>`).join('');
+}
+
+function toggleJournalTask(i) {
+    const list = JSON.parse(localStorage.getItem('warrior_journal_tasks') || '[]');
+    list[i].done = !list[i].done;
+    localStorage.setItem('warrior_journal_tasks', JSON.stringify(list));
+    renderJournalTasks();
+}
+
+function addJournalContact() {
+    const name = document.getElementById('new-contact-name').value.trim();
+    if (!name) return;
+    const list = JSON.parse(localStorage.getItem('warrior_journal_contacts') || '[]');
+    list.push({
+        name,
+        role: document.getElementById('new-contact-role').value.trim(),
+        note: document.getElementById('new-contact-note').value.trim()
+    });
+    localStorage.setItem('warrior_journal_contacts', JSON.stringify(list));
+    document.getElementById('new-contact-name').value = '';
+    document.getElementById('new-contact-role').value = '';
+    document.getElementById('new-contact-note').value = '';
+    renderJournalContacts();
+}
+
+function renderJournalContacts() {
+    const list = JSON.parse(localStorage.getItem('warrior_journal_contacts') || '[]');
+    const el = document.getElementById('journal-network');
+    if (!el) return;
+    if (list.length === 0) { el.innerHTML = '<p class="note">No contacts logged</p>'; return; }
+    el.innerHTML = list.map((c, i) => `<div class="list-row"><div class="row-info"><strong>${c.name}</strong><span class="row-meta">${c.role || ''}</span>${c.note ? `<span class="row-note">${c.note}</span>` : ''}</div><button class="link-btn" onclick="removeItem('warrior_journal_contacts',${i},renderJournalContacts)">×</button></div>`).join('');
 }
 
 function removeItem(key, index, renderFn) {

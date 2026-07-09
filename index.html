@@ -39,6 +39,7 @@
                 <a href="#" class="nav-item" data-tab="socials" data-num="07" data-title="Socials">Socials</a>
                 <a href="#" class="nav-item" data-tab="finance" data-num="08" data-title="Finance">Finance</a>
                 <a href="#" class="nav-item" data-tab="progress" data-num="09" data-title="Progress — The Path Forward">Progress</a>
+                <a href="#" class="nav-item" data-tab="journal" data-num="10" data-title="Journal — The Warrior's Log">Journal</a>
             </div>
             <div class="nav-footer">
                 <p class="nav-quote">"No man has the right to be an amateur in the matter of physical training."</p>
@@ -72,6 +73,7 @@
                 <div class="pillar" onclick="navigateTo('socials')"><span class="pillar-num">07</span><h3>Socials</h3><p>Content plan, brands, inspiration.</p></div>
                 <div class="pillar" onclick="navigateTo('finance')"><span class="pillar-num">08</span><h3>Finance</h3><p>Income, expenses, deals.</p></div>
                 <div class="pillar" onclick="navigateTo('progress')"><span class="pillar-num">09</span><h3>Progress</h3><p>Track. Measure. Improve.</p></div>
+                <div class="pillar" onclick="navigateTo('journal')"><span class="pillar-num">10</span><h3>Journal</h3><p>Voice-note it. Tasks, contacts, what's on your mind.</p></div>
             </section>
 
             <!-- Weekly Summary -->
@@ -87,6 +89,27 @@
         <div class="page-bg"></div>
         <div class="page-inner">
             <div class="page-subtitle">Week <span id="current-week">1</span> — <span id="current-phase">The Foundation</span></div>
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">—</span><h2>LA Equipment Guide</h2></div>
+                <p class="note">Currently Hollywood (near the Netflix building) until 2026-07-14. Three access tiers — no kettlebells at the home gym, so substitute below on those days.</p>
+                <div id="la-equipment-guide">
+                    <div class="list-row"><div class="row-info"><strong>Kurt's home gym</strong><span class="row-meta">Pull-up/chin-up bar, dip station, dumbbells, bench — the day-to-day default</span></div></div>
+                    <div class="list-row"><div class="row-info"><strong>Woodland Hills gym</strong><span class="row-meta">2-week membership, full commercial setup, trains there with Kurt and Chris</span></div></div>
+                    <div class="list-row"><div class="row-info"><strong>Car access</strong><span class="row-meta">Anywhere else in LA is reachable, not limited to walking distance</span></div></div>
+                </div>
+                <p class="note" style="margin-top:16px">Kettlebell substitutes on home-gym days: swing/snatch/clean/press → dumbbell equivalent · Turkish get-up → dumbbell get-up · goblet squat → dumbbell goblet squat · farmer carry → dumbbell farmer carry · trap bar deadlift → move to a Woodland Hills gym day.</p>
+                <details class="prefs" style="margin-top:16px">
+                    <summary>One-Week Touch-Up Protocol (standby)</summary>
+                    <p class="note">Not active — this is the fast "camera-ready" protocol for whenever a real shirtless-scene or on-camera opportunity lands with short notice. Two weeks isn't enough time to change body composition — this optimizes how he reads on camera on the day, not a different body. Scales down to however many days of notice actually exist.</p>
+                    <div id="touchup-protocol">
+                        <div class="list-row"><div class="row-info"><strong>10-14 days out</strong><span class="row-meta">Tighten — pull calories to the pre-role target, cut added sodium, zero alcohol, keep training as programmed, slightly higher reps on pump-focused blocks. Sleep 7-9h non-negotiable.</span></div></div>
+                        <div class="list-row"><div class="row-info"><strong>3-2 days out</strong><span class="row-meta">Taper — reduce fibrous/gas-forming foods, mild carb taper then an intentional carb bump the day before, sodium still low, full training continues.</span></div></div>
+                        <div class="list-row"><div class="row-info"><strong>Day before</strong><span class="row-meta">Sharpen — light training or rest, moderate sodium reintroduction is fine, normal hydration with only a mild pullback in the final 12h, last big meal 3-4h before call time.</span></div></div>
+                        <div class="list-row"><div class="row-info"><strong>Day of</strong><span class="row-meta">60-90 min before camera: push-ups 3x15-20, band pull-aparts or light lateral raise 3x15, dead hang + light row 3x12, light squats 2x15. No profuse sweating right before. Light oil/lotion for sheen (test beforehand). Shoulders back, controlled breathing, ask about key light direction.</span></div></div>
+                        <div class="list-row"><div class="row-info"><strong>Skip entirely</strong><span class="row-meta">Diuretics, laxatives, water-cut protocols, new supplements or training movements this close to an event, crash-dieting below sustainable calories.</span></div></div>
+                    </div>
+                </details>
+            </section>
             <section class="day-selector">
                 <button class="day-btn active" data-day="monday"><span class="day-label">Mon</span><span class="day-name">Forge</span></button>
                 <button class="day-btn" data-day="tuesday"><span class="day-label">Tue</span><span class="day-name">Gymnast</span></button>
@@ -149,9 +172,10 @@
             <section class="content-area" id="meal-plan"></section>
             <section class="content-block">
                 <div class="block-head"><span class="block-num">05</span><h2>Shopping</h2></div>
+                <p class="note">Currently based in LA — full kitchen, four-burner gas stovetop. Whole Foods/Erewhon for quality protein and produce, Trader Joe's for pantry staples, a local Italian deli if there's one nearby for parmigiano and good pasta. Fast, no-recipe options for busy days: protein + rice/pasta + roasted veg + olive oil and lemon; a 3-4 egg frittata with whatever's in the fridge; canned tuna + cannellini beans + rocket + lemon.</p>
                 <div class="action-row">
                     <button class="btn--outline" onclick="toggleShopMode()"><span id="shop-mode-label">Daily</span></button>
-                    <button class="btn--accent" onclick="openWoolworths()">Woolworths</button>
+                    <button class="btn--accent" onclick="openGroceryShop()">Shop</button>
                     <button class="btn--outline" id="copy-shopping-list" onclick="copyShoppingList()">Copy</button>
                 </div>
                 <div class="freshness-alerts" id="freshness-alerts"></div>
@@ -361,11 +385,52 @@
         <div class="page-inner">
             <div class="page-subtitle">Track. Measure. Improve.</div>
             <div class="stats-row">
-                <div class="stat"><span class="stat-label">Weight</span><span class="stat-val">80.0</span><span class="stat-unit">kg / target 75-77</span></div>
-                <div class="stat"><span class="stat-label">Body Fat</span><span class="stat-val">~17</span><span class="stat-unit">% / target 10-13</span></div>
+                <div class="stat"><span class="stat-label">Height</span><span class="stat-val">175</span><span class="stat-unit">cm (corrected from 173)</span></div>
+                <div class="stat"><span class="stat-label">Weight</span><span class="stat-val">78.0</span><span class="stat-unit">kg, confirmed / target 75-77</span></div>
+                <div class="stat"><span class="stat-label">Body Fat</span><span class="stat-val">TBD</span><span class="stat-unit">% / target 10-13 — awaiting photos</span></div>
                 <div class="stat"><span class="stat-label">Week</span><span class="stat-val" id="progress-week">1</span><span class="stat-unit">Phase 1</span></div>
             </div>
             <section class="content-block"><div class="block-head"><span class="block-num">01</span><h2>Benchmarks</h2></div><p class="note">Test every 12 weeks</p><div id="benchmark-list"></div></section>
+        </div>
+    </main>
+
+    <!-- ====================== JOURNAL ====================== -->
+    <main id="tab-journal" class="page" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Gustave_Courbet_-_Le_D%C3%A9sesp%C3%A9r%C3%A9_%281843%29.jpg/800px-Gustave_Courbet_-_Le_D%C3%A9sesp%C3%A9r%C3%A9_%281843%29.jpg">
+        <div class="page-bg"></div>
+        <div class="page-inner">
+            <div class="page-subtitle">Speak it, we'll write it down</div>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">01</span><h2>Daily Log</h2></div>
+                <p class="note">Voice-note or type whatever's on your mind — what happened, who you saw, what you're thinking about. No structure required.</p>
+                <div class="form-row">
+                    <textarea id="journal-entry-text" class="input" rows="3" placeholder="What's going on today..." style="flex:1;min-height:80px;resize:vertical"></textarea>
+                </div>
+                <button class="btn" onclick="addJournalEntry()" style="margin-top:8px">Log Entry</button>
+                <div id="journal-log" style="margin-top:16px"></div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">02</span><h2>Recurring Tasks</h2></div>
+                <p class="note">The things that tend to get forgotten — script reading, bloodwork, whatever's live right now.</p>
+                <div id="journal-tasks"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="new-task-text" placeholder="Add a task..." class="input">
+                    <button class="btn" onclick="addJournalTask()">Add</button>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <div class="block-head"><span class="block-num">03</span><h2>LA Network</h2></div>
+                <p class="note">Real relationships, not a target list — sequence matters. Log new context as it comes up.</p>
+                <div id="journal-network"></div>
+                <div class="form-row" style="margin-top:12px">
+                    <input type="text" id="new-contact-name" placeholder="Name" class="input">
+                    <input type="text" id="new-contact-role" placeholder="Role / context" class="input">
+                    <input type="text" id="new-contact-note" placeholder="Notes" class="input">
+                    <button class="btn" onclick="addJournalContact()">Add</button>
+                </div>
+            </section>
         </div>
     </main>
 
