@@ -103,13 +103,14 @@ body.menu-open .menu-trigger span:last-child{bottom:50%;transform:rotate(-45deg)
 .overlay-nav{
     position:fixed;inset:0;z-index:200;
     background:var(--bg);
-    display:flex;align-items:center;justify-content:center;
+    display:flex;align-items:flex-start;justify-content:center;
     opacity:0;pointer-events:none;
     transition:opacity .4s var(--ease);
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
 }
 body.menu-open .overlay-nav{opacity:1;pointer-events:all}
 
-.nav-inner{text-align:center;padding:60px 20px 20px}
+.nav-inner{text-align:center;padding:80px 20px 60px;margin:auto 0}
 .nav-list{display:flex;flex-direction:column;gap:4px}
 
 .nav-item{
